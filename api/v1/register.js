@@ -99,6 +99,24 @@ app.post('/api/v1/register/registerUser', (req, res) => {
     
 })
 
+// REGISTER DONATION
+
+app.post('/api/v1/donations/register', (req, res) => {
+    const name = req.body.itemName;
+    const setor = req.body.setor;
+    const cidade = req.body.cidade;
+    const imagem = req.body.imagem;
+    const description = req.body.description;
+    const phone = req.body.phone;
+
+    const sqlINSERT = "INSERT INTO donates (name, setor, city, images, description, phone) VALUES (?,?,?,?,?,?)"
+
+    db.query(sqlINSERT, [name,setor,cidade,imagem,description,phone], (err, result) => {
+        res.send({message: 'Item cadastrado com sucesso!'})
+    })
+
+})
+
 
 
 // LOGIN SYSTEM
@@ -138,4 +156,15 @@ app.get('/api/v1/register/login', (req, res) => {
     } else {
         res.send({loggedIn: false})
     }
+})
+
+
+// SEND DONATIONS TO FRONTEND
+
+app.get('/api/v1/donations/getdonations', (req, res) => {
+    const sqlSELECT = "SELECT * FROM donates"
+
+    db.query(sqlSELECT, (err, result) =>{
+        res.send(result);
+    })
 })
