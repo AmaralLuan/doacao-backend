@@ -46,7 +46,7 @@ app.use(
         resave: false,
         saveUninitialized: false,
         cookie: {
-            expires: 60 * 60 * 24
+            expires: 60 * 60 * 60 * 24
         }
     })
 )
@@ -71,6 +71,7 @@ app.post('/api/v1/register/registerUser', (req, res) => {
     const email = req.body.email;
     const password = req.body.password;
     const confirmPassword = req.body.confirmPassword;
+    const url = req.body.url;
 
     if (password == confirmPassword) {
         bcrypt.hash(password, SaltRounds, (err, hash) => {
@@ -80,8 +81,8 @@ app.post('/api/v1/register/registerUser', (req, res) => {
         
         db.query(
     
-                "INSERT INTO users (name, email, password) VALUES (?,?,?)",
-                [name, email, hash],
+                "INSERT INTO users (name, email, password, photo_url) VALUES (?,?,?,?)",
+                [name, email, hash, url],
                 (err, result) => {
                     if (result) {
                     console.log(result)
@@ -109,10 +110,18 @@ app.post('/api/v1/donations/register', (req, res) => {
     const description = req.body.description;
     const phone = req.body.phone;
 
-    const sqlINSERT = "INSERT INTO donates (name, setor, city, images, description, phone) VALUES (?,?,?,?,?,?)"
+    const user_id = req.body.user_id;
 
-    db.query(sqlINSERT, [name,setor,cidade,imagem,description,phone], (err, result) => {
+    const sqlINSERT = "INSERT INTO donates (name, setor, city, images, description, phone, user_id) VALUES (?,?,?,?,?,?,?)"
+
+    db.query(sqlINSERT, [name,setor,cidade,imagem,description,phone,user_id], (err, result) => {
         res.send({message: 'Item cadastrado com sucesso!'})
+    })
+
+    const sqlSELECT = "SELECT * FROM users WHERE user_id = ?"
+
+    db.query(sqlSELECT, [user_id], (error, result) => {
+        res.send(result);
     })
 
 })
@@ -168,3 +177,4 @@ app.get('/api/v1/donations/getdonations', (req, res) => {
         res.send(result);
     })
 })
+
