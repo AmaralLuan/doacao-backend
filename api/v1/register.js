@@ -102,28 +102,28 @@ app.post('/api/v1/register/registerUser', (req, res) => {
 
 // REGISTER DONATION
 
-app.post('/api/v1/donations/register', (req, res) => {
+app.post('/api/v1/register/registerdonate', (req, res) => {
     const name = req.body.itemName;
     const setor = req.body.setor;
     const cidade = req.body.cidade;
     const imagem = req.body.imagem;
     const description = req.body.description;
     const phone = req.body.phone;
+    const condition = req.body.condition;
 
-    const user_id = req.body.user_id;
 
-    const sqlINSERT = "INSERT INTO donates (name, setor, city, images, description, phone, user_id) VALUES (?,?,?,?,?,?,?)"
+    const sqlINSERT = "INSERT INTO donates (name, setor, city, images, description, phone, condicao) VALUES (?,?,?,?,?,?,?)"
 
-    db.query(sqlINSERT, [name,setor,cidade,imagem,description,phone,user_id], (err, result) => {
-        res.send({message: 'Item cadastrado com sucesso!'})
+    db.query(sqlINSERT, [name,setor,cidade,imagem,description,phone,condition], (err, result) => {
+        if (err){
+            res.send({message: "deu ruim"})
+        } else {
+            res.send({message: 'Item cadastrado com sucesso!'})
+        }
+        
     })
 
-    const sqlSELECT = "SELECT * FROM users WHERE user_id = ?"
-
-    db.query(sqlSELECT, [user_id], (error, result) => {
-        res.send(result);
-    })
-
+    
 })
 
 
