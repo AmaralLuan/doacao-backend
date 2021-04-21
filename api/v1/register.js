@@ -16,7 +16,7 @@ app.use(express.json());
 
 app.use(cors(
     {
-        origin: ['http://localhost:3000'],
+        origin: ['https://doacaoteste.netlify.app/'],
         methods: ['GET', 'POST', 'PUT', 'DELETE'],
         credentials: true
     }
@@ -66,7 +66,7 @@ const SaltRounds = 10;
 
 //REGISTER
 
-app.post('/api/v1/register/registerUser', (req, res) => {
+app.post('https://doacao-backend.herokuapp.com/api/v1/register/registerUser', (req, res) => {
     const name = req.body.name;
     const email = req.body.email;
     const password = req.body.password;
