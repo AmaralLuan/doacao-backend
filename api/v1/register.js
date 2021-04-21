@@ -14,13 +14,7 @@ const app = express();
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(express.json());
 
-app.use(cors(
-    {
-        origin: ['https://doacaoteste.netlify.app/'],
-        methods: ['GET', 'POST', 'PUT', 'DELETE'],
-        credentials: true
-    }
-))
+app.use(cors());
 
 
 // CONNECTION WITH DATABASE
