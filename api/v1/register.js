@@ -15,8 +15,8 @@ app.use(bodyParser.urlencoded({extended: true}))
 app.use(express.json());
 
 app.use(cors({
-    origin: ['https://doacaoteste.netlify.app/'],
-    methods: ['GET', 'POST', 'PUT'],
+    origin: "*",
+    methods: 'GET, POST, PUT',
     credentials: true
 }));
 
