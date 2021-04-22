@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "devStart": "nodemon api/v1/register",
-    "start": "node api/v1/register"
+    "start": "node api/v1/register",
+    "build": "npm run build"
   },
   "author": "Luan",
   "license": "ISC",
