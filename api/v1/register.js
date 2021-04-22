@@ -129,7 +129,7 @@ app.post('https://doacao-backend.herokuapp.com/api/v1/register/registerdonate', 
 // LOGIN SYSTEM
 
 
-app.post('/api/v1/register/login', (req, res) => {
+app.post('https://doacao-backend.herokuapp.com/api/v1/register/login', cors(), (req, res) => {
     const login = req.body.login;
     const password = req.body.password;
 
