@@ -129,7 +129,7 @@ app.post('https://doacao-backend.herokuapp.com/api/v1/register/registerdonate', 
 // LOGIN SYSTEM
 
 
-app.post('/api/v1/register/login', (req, res) => {
+app.post('https://doacao-backend.herokuapp.com/api/v1/register/login', (req, res) => {
     const login = req.body.login;
     const password = req.body.password;
 
@@ -157,7 +157,7 @@ app.post('/api/v1/register/login', (req, res) => {
     )
 })
 
-app.get('/api/v1/register/login', (req, res) => {
+app.get('https://doacao-backend.herokuapp.com/api/v1/register/login', (req, res) => {
     if (req.session.user) {
         res.send({loggedIn: true, user: req.session.user})
     } else {
@@ -168,7 +168,7 @@ app.get('/api/v1/register/login', (req, res) => {
 
 // SEND DONATIONS TO FRONTEND
 
-app.get('/api/v1/donations/getdonations', (req, res) => {
+app.get('https://doacao-backend.herokuapp.com/api/v1/donations/getdonations', (req, res) => {
     const sqlSELECT = "SELECT * FROM donates"
 
     db.query(sqlSELECT, (err, result) =>{
