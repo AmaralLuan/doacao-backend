@@ -51,7 +51,7 @@ app.use(
 
 // LISTENING PORT
 
-app.listen(3001, () => {
+app.listen(process.env.PORT || 3001, () => {
     console.log('Runnin on port 3001');
 })
 
