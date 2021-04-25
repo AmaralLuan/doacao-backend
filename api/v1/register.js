@@ -16,7 +16,7 @@ app.use(express.json());
 
 app.use(cors({
     origin: "*",
-    methods: 'GET, POST, PUT',
+    methods: 'GET, POST, PUT'
 }));
 
 
@@ -64,7 +64,7 @@ const SaltRounds = 10;
 
 //REGISTER
 
-app.post('https://doacao-backend.herokuapp.com/api/v1/register/registerUser', (req, res) => {
+app.post('/api/v1/register/registerUser', (req, res) => {
     const name = req.body.name;
     const email = req.body.email;
     const password = req.body.password;
@@ -100,7 +100,7 @@ app.post('https://doacao-backend.herokuapp.com/api/v1/register/registerUser', (r
 
 // REGISTER DONATION
 
-app.post('https://doacao-backend.herokuapp.com/api/v1/register/registerdonate', (req, res) => {
+app.post('/api/v1/register/registerdonate', (req, res) => {
     const name = req.body.itemName;
     const setor = req.body.setor;
     const cidade = req.body.cidade;
@@ -129,7 +129,7 @@ app.post('https://doacao-backend.herokuapp.com/api/v1/register/registerdonate', 
 // LOGIN SYSTEM
 
 
-app.post('https://doacao-backend.herokuapp.com/api/v1/register/login', (req, res) => {
+app.post('/api/v1/register/login', (req, res) => {
     const login = req.body.login;
     const password = req.body.password;
 
@@ -157,7 +157,7 @@ app.post('https://doacao-backend.herokuapp.com/api/v1/register/login', (req, res
     )
 })
 
-app.get('https://doacao-backend.herokuapp.com/api/v1/register/login', (req, res) => {
+app.get('/api/v1/register/login', (req, res) => {
     if (req.session.user) {
         res.send({loggedIn: true, user: req.session.user})
     } else {
@@ -168,7 +168,7 @@ app.get('https://doacao-backend.herokuapp.com/api/v1/register/login', (req, res)
 
 // SEND DONATIONS TO FRONTEND
 
-app.get('https://doacao-backend.herokuapp.com/api/v1/donations/getdonations', (req, res) => {
+app.get('/api/v1/donations/getdonations', (req, res) => {
     const sqlSELECT = "SELECT * FROM donates"
 
     db.query(sqlSELECT, (err, result) =>{
