@@ -23,11 +23,12 @@ app.use(cors({
 // CONNECTION WITH DATABASE
 
 const db = mysql.createPool({
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'doacao'
+    host: 'us-cdbr-east-03.cleardb.com',
+    user: 'b17e1ac05ee43a',
+    password: 'de0e2b90',
+    database: 'heroku_3ca6c256ecb0fd5'
 })
+
 
 
 // SESSION CONFIGURATIONS
